@@ -14,18 +14,16 @@
 
         @yield('head-imports')
     </head>
-    <body>
-
-        @include('partials.header')
-
+    <body class="bg-dark text-white">
+        <header>
+            <h1 class="text-center py-5">
+                DC Comics
+            </h1>
+        </header>
         <main>
             <div class="container">
 
-                <div class="row">
-
-                    @yield('main-content')
-
-                </div>
+                @yield('main-content')
 
             </div>
         </main>
