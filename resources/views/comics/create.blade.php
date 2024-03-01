@@ -37,7 +37,7 @@
 
             <div class="mb-3">
                 <label for="sale_date" class="form-label">Sale date</label>
-                <input type="text" class="form-control" id="sale_date" name="sale_date" placeholder="Insert sale date..." maxlength="16" required>
+                <input type="text" class="form-control" id="sale_date" name="sale_date" placeholder="Insert date AAAA-MM-GG format..." maxlength="16" required>
             </div>
 
             <div class="mb-3">
