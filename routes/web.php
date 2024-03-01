@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Controller
-
-
 // Controllers
 use App\Http\Controllers\ComicController;
 

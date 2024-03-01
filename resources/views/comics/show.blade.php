@@ -5,6 +5,7 @@
 @section('main-content')
     <main>
         <div class="container">
+
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-2">
@@ -24,6 +25,8 @@
                     </div>
                 </div>
             </div>
+            <a href="{{route ('comics.index', ['comic' => $comic->id])}}" class="btn btn-primary">Home</a>
+
         </div>
     </main>
 @endsection

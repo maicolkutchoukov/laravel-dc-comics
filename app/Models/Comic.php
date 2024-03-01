@@ -1,5 +1,5 @@
 <?php
-
+//                                                                          php artisan make:model Comic
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

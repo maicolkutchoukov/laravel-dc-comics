@@ -1,21 +1,23 @@
 <?php
-
+//                                                                                      php artisan make:seeder ComicSeeder
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+// ------------------------------
+// Utilizzo il model Comic
 use App\Models\Comic;
-
+// ------------------------------
 class ComicSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
-    {
-        Comic::truncate();
-
+    {   //truncate() serve a svuotare la classe 
+        //prima di riempirla di nuovo
+        Comic::truncate();      
+        
         $comics_data = config("comic");
 
         foreach ($comics_data as $index => $single_comic) {

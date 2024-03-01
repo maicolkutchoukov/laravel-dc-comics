@@ -5,6 +5,7 @@
 @section('main-content')
     <main>
         <div class="container">
+            
             <div class="row">
                 @foreach ($comics as $index => $comic)
                     <div class="col-4 pb-3 mb-5">
@@ -25,6 +26,7 @@
                     </div>
                 @endforeach
             </div>
+            <a href="{{route('comics.create')}}" class="btn btn-primary px-4 py-3 mb-5">ADD NEW COMIC, CLICK HERE!</a>
         </div>
     </main>
 @endsection

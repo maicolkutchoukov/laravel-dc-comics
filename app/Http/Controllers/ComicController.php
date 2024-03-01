@@ -1,9 +1,10 @@
 <?php
-
+// Comando da eseguire:                                                                     php artisan make:controller ComicController  --resource
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Utilizzo i models
 use App\Models\Comic;
 
 class ComicController extends Controller
@@ -22,7 +23,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view("comics.create");
     }
 
     /**
@@ -30,7 +31,21 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comic_data = $request->all();
+
+        $comic = new Comic();
+        $comic->title = $comic_data['title'];
+        $comic->description = $comic_data['description'];
+        $comic->thumb = $comic_data['thumb'];
+        $comic->price = $comic_data['price'];
+        $comic->series = $comic_data['series'];
+        $comic->sale_date = $comic_data['sale_date'];
+        $comic->type = $comic_data['type'];
+        $comic->artists = $comic_data['artists'];
+        $comic->writers = $comic_data['writers'];
+        $comic->save();
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
     /**
