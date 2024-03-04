@@ -31,9 +31,19 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-
-        $comicData = $request->all();
-        $comic = Comic::create($comicData);
+        $validatedData = $request->validate([
+            'title'             => 'required|max:1024',
+            'description'       => 'nullable|min:1|max:2048',
+            'thumb'             => 'nullable|max:1024|url',
+            'price'             => 'required|max:8',
+            'series'            => 'required|max:256',
+            'sale_date'         => 'required|max:4096',
+            'type'              => 'nullable|max:4096',
+            'artist'            => 'nullable|max:4096',
+            'writers'           => 'nullable|max:4096',
+        ]);
+        /* $comicData = $request->all(); */
+        $comic = Comic::create($validatedData);
         
         /* 
         $comic = new Comic();
@@ -73,24 +83,28 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $comicData = $request->all();
+        $validatedData = $request->validate([
+            'title'             => 'required|max:256',
+            'description'       => 'nullable|min:1|max:2048',
+            'thumb'             => 'nullable|max:1024|url',
+            'price'             => 'required|max:8',
+            'series'            => 'required|string|max:256',
+            'sale_date'         => 'nullable|date',
+            'type'              => 'nullable|string|max:64',
+            'artist'            => 'nullable|string|max:2048',
+            'writers'           => 'nullable|string|max:2048',
+        ],[
+            'title.required' => 'Il titolo è obbligatorio.',
+            'title.max' => 'Il titolo non può essere più lungo di :max caratteri.',
+            'description.max' => 'La descrizione non può essere più lunga di :max caratteri.',
+            'thumb.url' => 'Il link dell\'immagine non è valido',
+            'sale_date.date' => 'La data di vendita non è valida.',
+            'type.max' => 'Il tipo non può essere più lungo di :max caratteri.',
+            'artists.max' => 'La lista degli artisti non può essere più lunga di :max caratteri.',
+            'writers.max' => 'La lista degli scrittori non può essere più lunga di :max caratteri.',
+        ]);
 
-        // TODO: valido i dati, ma lo faremo in futuro
-
-        $comic->update($comicData);
-
-        // OPPURE
-
-        // $comic->fill($comicData);
-        // $comic->save();
-
-        // $comic->src = $comicData['src'];
-        // $comic->title = $comicData['title'];
-        // $comic->type = $comicData['type'];
-        // $comic->cooking_time = $comicData['cooking_time'];
-        // $comic->weight = $comicData['weight'];
-        // $comic->description = $comicData['description'];
-        // $comic->save();
+        $comic->update($validatedData);
 
         return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
